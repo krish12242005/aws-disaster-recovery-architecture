@@ -1,4 +1,4 @@
-﻿terraform {
+terraform {
   required_version = ">= 1.5.0"
 
   required_providers {
@@ -13,30 +13,22 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_s3_bucket" "backup" {
-  bucket = var.backup_bucket_name
+module "backup_storage" {
+  source = "./modules/s3-backup"
 
-  tags = {
-    Name        = "disaster-recovery-backup"
-    Environment = var.environment
-    Project     = "aws-disaster-recovery-architecture"
-  }
+  bucket_name = var.backup_bucket_name
+  environment = var.environment
 }
 
-resource "aws_s3_bucket_versioning" "backup" {
-  bucket = aws_s3_bucket.backup.id
+module "backup_iam" {
+  source = "./modules/iam"
 
-  versioning_configuration {
-    status = "Enabled"
-  }
+  environment = var.environment
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "backup" {
-  bucket = aws_s3_bucket.backup.id
+module "backup_plan" {
+  source = "./modules/backup"
 
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
+  backup_plan_name = var.backup_plan_name
+  environment      = var.environment
 }

@@ -1,13 +1,39 @@
-﻿# Terraform AWS Disaster Recovery Infrastructure
+﻿# Terraform Infrastructure
 
-This directory contains the Infrastructure as Code configuration
-for the disaster recovery environment.
+The Terraform configuration is organized into reusable modules.
 
-## Files
+## Modules
 
-- main.tf
-- variables.tf
-- outputs.tf
+### s3-backup
 
-The infrastructure is designed to provide a foundation for
-centralized backup storage and disaster recovery workflows.
+Creates:
+
+- S3 backup bucket
+- Versioning
+- Server-side encryption
+- Public access blocking
+
+### iam
+
+Creates the IAM service role required by
+AWS Backup.
+
+### backup
+
+Creates:
+
+- AWS Backup Vault
+- AWS Backup Plan
+- Daily backup rule
+- 30-day retention
+
+## Important
+
+This project is currently prepared for local validation.
+
+Do NOT run:
+
+terraform apply
+
+until AWS credentials, permissions and resource requirements
+have been reviewed.
