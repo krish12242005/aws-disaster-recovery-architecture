@@ -1,25 +1,28 @@
 ﻿# AWS Disaster Recovery & Backup Architecture
 
-A cloud disaster recovery and backup architecture project
-built using AWS services.
+A production-oriented AWS disaster recovery and backup architecture.
 
 ## Project Status
 
-🚧 Initial project structure created.
+🚧 Initial implementation prepared.
 
-## Planned Services
+## AWS Services
 
 - Amazon S3
 - Amazon RDS
-- Amazon Route 53
+- Amazon EC2
 - AWS Backup
-- AWS EC2
+- Amazon Route 53
+- AWS Lambda
+- Amazon SNS
+- IAM
 
-## Repository
+## Project Structure
 
-This repository will contain the disaster recovery architecture,
-backup configuration, recovery documentation, architecture diagrams,
-screenshots, and implementation details.
+- terraform/ - Infrastructure as Code
+- lambda/ - Backup monitoring automation
+- config/ - Backup configuration
+- docs/ - Architecture documentation
 
 ## Author
 

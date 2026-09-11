@@ -1,0 +1,11 @@
+﻿{
+  "backup_policy": {
+    "frequency": "daily",
+    "retention_days": 30,
+    "storage": "Amazon S3"
+  },
+  "recovery": {
+    "strategy": "backup-and-restore",
+    "primary_region": "ap-south-1"
+  }
+}
